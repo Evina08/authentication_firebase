@@ -6,8 +6,10 @@
 - NIM : 1931710072
 
 - Login Page
--  ![gambar 1](image/img1.jpeg)
+-  ![gambar 1](assets/img1.jpeg)
 - Google Screen
-- ![gambar 2](image/img2.jpeg)
+- ![gambar 2](assets/img2.jpeg)
 -  Email Screen
--  ![gambar 2](image/img3.jpeg)
+-  ![gambar 3](assets/img3.jpeg)
+-  Firebase
+-  ![gambar 4](assets/img4.jpeg)
