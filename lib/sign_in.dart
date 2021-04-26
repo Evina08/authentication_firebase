@@ -46,19 +46,20 @@ Future<void> signOutGoogle() async {
   print("Sign Out");
 }
 
-Future<User> signInWithEmail() async {
+Future<User> signInWithEmail(
+    String userName, String userEmail, String userPassword) async {
   await Firebase.initializeApp();
   User user;
   try {
     UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-      email: 'evinadindasyawalia@gmail.com',
-      password: 'evina080102',
+      email: userEmail,
+      password: userPassword,
     );
     user = userCredential.user;
 
     if (user != null) {
-      name = 'Evina';
-      email = user.email;
+      name = userName;
+      email = userEmail;
     }
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {

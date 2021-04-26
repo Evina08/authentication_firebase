@@ -9,6 +9,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,20 +79,79 @@ class _LoginPageState extends State<LoginPage> {
     return OutlinedButton(
       // splashColor: Colors.grey,
       onPressed: () {
-        signInWithEmail().then((result) {
-          if (result != null) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return EmailScreen();
-                },
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              scrollable: true,
+              title: Text('Login Page'),
+              content: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Form(
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          labelText: 'Name',
+                          icon: Icon(Icons.people),
+                        ),
+                        onChanged: (value) {},
+                      ),
+                      TextFormField(
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          icon: Icon(Icons.email),
+                        ),
+                        onChanged: (value) {},
+                      ),
+                      TextFormField(
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                          labelText: 'password',
+                          icon: Icon(Icons.lock),
+                        ),
+                        onChanged: (value) {},
+                      ),
+                    ],
+                  ),
+                ),
               ),
+              actions: [
+                ElevatedButton(
+                  child: Text("Submit"),
+                  onPressed: () {
+                    String userName = nameController.text;
+                    String userEmail = emailController.text;
+                    String userPassword = passwordController.text;
+                    signInWithEmail(
+                      userName,
+                      userEmail,
+                      userPassword,
+                    ).then(
+                      (result) {
+                        if (result != null) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return EmailScreen();
+                              },
+                            ),
+                          );
+                        }
+                      },
+                    );
+                  },
+                ),
+              ],
             );
-          }
-        });
+          },
+        );
       },
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+
         // highlightElevation: 0,
         side: BorderSide(color: Colors.grey),
       ),
@@ -99,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Image(image: AssetImage("assets/email_logo.png"), height: 10.0),
+            // Image(image: AssetImage("image/google_logo.png"), height: 35.0),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
