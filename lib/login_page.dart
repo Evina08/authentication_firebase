@@ -161,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Image(image: AssetImage("image/google_logo.png"), height: 35.0),
+            // Image(image: AssetImage("assets/email_logo.png"), height: 35.0),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
